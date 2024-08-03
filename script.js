@@ -13,18 +13,22 @@ function handleOrientation(event) {
     let x, y;
     const orientation = window.orientation;
 
-    if (orientation === 0 || orientation === 180) {
-        // Portrait and Portrait upside down
+    if (orientation === 0) {
+        // Portrait
         x = (gamma / 45) * 50; // -45 to 45 degrees mapped to -50% to 50%
         y = (beta / 90) * 50;  // -90 to 90 degrees mapped to -50% to 50%
+    } else if (orientation === 180) {
+        // Portrait upside down
+        x = (-gamma / 45) * 50; // -45 to 45 degrees mapped to -50% to 50%
+        y = (-beta / 90) * 50;  // -90 to 90 degrees mapped to -50% to 50%
     } else if (orientation === 90) {
         // Landscape (home button on the right)
         x = (beta / 45) * 50;  // -45 to 45 degrees mapped to -50% to 50%
-        y = (-gamma / 45) * 50; // -45 to 45 degrees mapped to -50% to 50%
-    } else if (orientation === -90) {
+        y = (-gamma / 90) * 50; // -90 to 90 degrees mapped to -50% to 50%
+    } else if (orientation === -90 || orientation === 270) {
         // Landscape (home button on the left)
         x = (-beta / 45) * 50;  // -45 to 45 degrees mapped to -50% to 50%
-        y = (gamma / 45) * 50;  // -45 to 45 degrees mapped to -50% to 50%
+        y = (gamma / 90) * 50;  // -90 to 90 degrees mapped to -50% to 50%
     }
 
     // Clamp values to prevent bubble from moving out of bounds
