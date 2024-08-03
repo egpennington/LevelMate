@@ -6,27 +6,42 @@ let isLevel = false;
 function handleOrientation(event) {
     const beta = event.beta;    // Tilt front-back
     const gamma = event.gamma;  // Tilt left-right
+    const alpha = event.alpha;  // Rotation around z-axis
 
     const bubble = document.getElementById('bubble');
     const message = document.getElementById('message');
 
     let x, y;
 
-    // Check if the device is in portrait or landscape mode
-    if (window.innerWidth > window.innerHeight) {
-        // Landscape mode
-        x = (beta / 90) * 50;  // -90 to 90 degrees mapped to -50% to 50%
-        y = (-gamma / 90) * 50; // -90 to 90 degrees mapped to -50% to 50%
-    } else {
-        // Portrait mode
-        x = (gamma / 45) * 50; // -45 to 45 degrees mapped to -50% to 50%
-        y = (beta / 45) * 50;  // -45 to 45 degrees mapped to -50% to 50%
-    }
-
-    // Adjust for the phone being on its side (long edge)
-    if (Math.abs(window.orientation) === 90) {
-        x = (beta / 45) * 50;  // -45 to 45 degrees mapped to -50% to 50%
-        y = (-gamma / 45) * 50; // -45 to 45 degrees mapped to -50% to 50%
+    if (Math.abs(window.orientation) === 0 || Math.abs(window.orientation) === 180) {
+        // Portrait or Portrait upside down
+        if (beta > 45 || beta < -45) {
+            // Face down
+            x = (-gamma / 45) * 50;
+            y = (-beta / 45) * 50;
+        } else {
+            // Face up
+            x = (gamma / 45) * 50;
+            y = (beta / 45) * 50;
+        }
+    } else if (Math.abs(window.orientation) === 90 || Math.abs(window.orientation) === 270) {
+        // Landscape or Landscape upside down
+        if (Math.abs(gamma) > 45) {
+            // Phone on its edge (long side)
+            x = (beta / 45) * 50;
+            y = (-gamma / 45) * 50;
+        } else {
+            // Face up or Face down
+            if (beta > 45 || beta < -45) {
+                // Face down
+                x = (-gamma / 45) * 50;
+                y = (-beta / 45) * 50;
+            } else {
+                // Face up
+                x = (gamma / 45) * 50;
+                y = (beta / 45) * 50;
+            }
+        }
     }
 
     // Clamp values to prevent bubble from moving out of bounds
