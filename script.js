@@ -1,12 +1,11 @@
 window.addEventListener('deviceorientation', handleOrientation);
-const levelSound = new Audio('level-sound.mp3'); // Add a sound file named 'level-sound.mp3'
+const levelSound = new Audio('/level-sound.mp3'); // Ensure the path is correct
 
 let isLevel = false;
 
 function handleOrientation(event) {
     const beta = event.beta;    // Tilt front-back
     const gamma = event.gamma;  // Tilt left-right
-    const alpha = event.alpha;  // Rotation around the z-axis
 
     const bubble = document.getElementById('bubble');
     const message = document.getElementById('message');
@@ -21,11 +20,11 @@ function handleOrientation(event) {
     } else if (orientation === 90) {
         // Landscape (home button on the right)
         x = (beta / 45) * 50;  // -45 to 45 degrees mapped to -50% to 50%
-        y = (-gamma / 90) * 50; // -90 to 90 degrees mapped to -50% to 50%
+        y = (-gamma / 45) * 50; // -45 to 45 degrees mapped to -50% to 50%
     } else if (orientation === -90) {
         // Landscape (home button on the left)
         x = (-beta / 45) * 50;  // -45 to 45 degrees mapped to -50% to 50%
-        y = (gamma / 90) * 50;  // -90 to 90 degrees mapped to -50% to 50%
+        y = (gamma / 45) * 50;  // -45 to 45 degrees mapped to -50% to 50%
     }
 
     // Clamp values to prevent bubble from moving out of bounds
@@ -38,7 +37,9 @@ function handleOrientation(event) {
     if (Math.abs(clampedX) < 5 && Math.abs(clampedY) < 5) {
         if (!isLevel) {
             message.textContent = "Level!";
-            levelSound.play(); // Play sound when level
+            levelSound.play().catch(error => {
+                console.log('Sound playback failed:', error);
+            });
             isLevel = true;
         }
     } else {
