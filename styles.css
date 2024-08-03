@@ -32,6 +32,26 @@ body {
     transform: translate(-50%, -50%);
 }
 
+#middle-line-horizontal {
+    width: 200px;
+    height: 1px;
+    background-color: #333;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+#middle-line-vertical {
+    width: 1px;
+    height: 200px;
+    background-color: #333;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 #message {
     font-size: 1.2em;
     color: #333;
