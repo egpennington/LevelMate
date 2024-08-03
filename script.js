@@ -15,12 +15,18 @@ function handleOrientation(event) {
     // Check if the device is in portrait or landscape mode
     if (window.innerWidth > window.innerHeight) {
         // Landscape mode
-        x = (beta / 90) * 50; // -90 to 90 degrees mapped to -50% to 50%
+        x = (beta / 90) * 50;  // -90 to 90 degrees mapped to -50% to 50%
         y = (-gamma / 90) * 50; // -90 to 90 degrees mapped to -50% to 50%
     } else {
         // Portrait mode
         x = (gamma / 45) * 50; // -45 to 45 degrees mapped to -50% to 50%
         y = (beta / 45) * 50;  // -45 to 45 degrees mapped to -50% to 50%
+    }
+
+    // Adjust for the phone being on its side (long edge)
+    if (Math.abs(window.orientation) === 90) {
+        x = (beta / 45) * 50;  // -45 to 45 degrees mapped to -50% to 50%
+        y = (-gamma / 45) * 50; // -45 to 45 degrees mapped to -50% to 50%
     }
 
     // Clamp values to prevent bubble from moving out of bounds
