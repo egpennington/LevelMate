@@ -6,42 +6,45 @@ let isLevel = false;
 function handleOrientation(event) {
     const beta = event.beta;    // Tilt front-back
     const gamma = event.gamma;  // Tilt left-right
-    const alpha = event.alpha;  // Rotation around z-axis
 
     const bubble = document.getElementById('bubble');
     const message = document.getElementById('message');
 
     let x, y;
 
-    if (Math.abs(window.orientation) === 0 || Math.abs(window.orientation) === 180) {
-        // Portrait or Portrait upside down
-        if (beta > 45 || beta < -45) {
-            // Face down
-            x = (-gamma / 45) * 50;
-            y = (-beta / 45) * 50;
-        } else {
-            // Face up
+    // Handle the different orientations of the device
+    switch (window.orientation) {
+        case 0:
+            // Portrait
             x = (gamma / 45) * 50;
             y = (beta / 45) * 50;
-        }
-    } else if (Math.abs(window.orientation) === 90 || Math.abs(window.orientation) === 270) {
-        // Landscape or Landscape upside down
-        if (Math.abs(gamma) > 45) {
-            // Phone on its edge (long side)
+            break;
+        case 180:
+            // Portrait upside down
+            x = (-gamma / 45) * 50;
+            y = (-beta / 45) * 50;
+            break;
+        case 90:
+            // Landscape (home button on the right)
             x = (beta / 45) * 50;
             y = (-gamma / 45) * 50;
-        } else {
-            // Face up or Face down
-            if (beta > 45 || beta < -45) {
-                // Face down
-                x = (-gamma / 45) * 50;
-                y = (-beta / 45) * 50;
-            } else {
-                // Face up
-                x = (gamma / 45) * 50;
-                y = (beta / 45) * 50;
-            }
-        }
+            break;
+        case -90:
+            // Landscape (home button on the left)
+            x = (-beta / 45) * 50;
+            y = (gamma / 45) * 50;
+            break;
+        default:
+            // Fallback to handle any other orientation
+            x = (gamma / 45) * 50;
+            y = (beta / 45) * 50;
+            break;
+    }
+
+    // Adjust for when the phone is on its edge
+    if (Math.abs(window.orientation) === 90) {
+        x = (beta / 45) * 50;
+        y = (-gamma / 45) * 50;
     }
 
     // Clamp values to prevent bubble from moving out of bounds
