@@ -27,13 +27,13 @@ body {
     background-color: #ff0000;
     border-radius: 50%;
     position: absolute;
-    top: 43%;
-    left: 43%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 
 #middle-line-horizontal {
-    width: 200px;
+    width: 100%;
     height: 1px;
     background-color: #333;
     position: absolute;
@@ -44,7 +44,7 @@ body {
 
 #middle-line-vertical {
     width: 1px;
-    height: 200px;
+    height: 100%;
     background-color: #333;
     position: absolute;
     top: 0;
