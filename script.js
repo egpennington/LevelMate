@@ -1,5 +1,5 @@
 window.addEventListener('deviceorientation', handleOrientation);
-const levelSound = new Audio('/level-sound.mp3'); // Ensure the path is correct
+const levelSound = new Audio('level-sound.mp3'); // Ensure the path is correct
 
 let isLevel = false;
 
