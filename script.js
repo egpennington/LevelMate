@@ -31,7 +31,7 @@ function handleOrientation(event) {
 
     // Check if the device is level
     if (Math.abs(clampedX) < 5 && Math.abs(clampedY) < 5) {
-        if (isLevel) {
+        if (!isLevel) {
             message.textContent = "Level!";
             levelSound.play().catch(error => {
                 console.log('Sound playback failed:', error);
