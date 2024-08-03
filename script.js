@@ -1,7 +1,6 @@
 window.addEventListener('deviceorientation', handleOrientation);
 
 function handleOrientation(event) {
-    const alpha = event.alpha;  // Rotation around the z-axis
     const beta = event.beta;    // Tilt front-back
     const gamma = event.gamma;  // Tilt left-right
 
