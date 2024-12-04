@@ -63,7 +63,7 @@ function handleOrientation(event) {
             isLevel = true;
         }
     } else {
-        message.textContent = "Tilt your device to level.";
+        message.textContent = "TOUCH HERE TO START - Then Tilt your device to level.";
         isLevel = false;
     }
 }
