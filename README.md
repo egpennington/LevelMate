@@ -3,7 +3,7 @@ A precise tool designed to help users achieve perfect alignment when hanging pho
 
 ## Overview
 
-**LevelMate** is a web-based application designed to assist users in achieving perfect horizontal alignment when hanging photos, shelves, and other objects. Utilizing the device's accelerometer, LevelMate provides real-time feedback to ensure objects are level, making DIY projects simpler and more precise.
+**LevelMate** is a web-based mobile app application designed to assist users in achieving perfect horizontal alignment when hanging photos, shelves, and other objects. Utilizing the device's accelerometer, LevelMate provides real-time feedback to ensure objects are level, making DIY projects simpler and more precise.
 
 **Try it now:** [LevelMate](https://levelmate.netlify.app/)
 
